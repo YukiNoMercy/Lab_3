@@ -1,39 +1,4 @@
-import random
-
-
-class TTrain:
-    def __init__(self, N):
-        self.wagon = []
-        self.places = 4
-        self.compartment = N
-        self.count_empty = 0
-        self.variable = ['м', 'ж', "None"]
-
-    def add_value(self):
-        for i in range(self.compartment):
-            temp = {}
-            for j in range(1, self.places + 1):
-                temp.update({j : random.choice(self.variable)})
-            self.wagon.append(temp)
-
-    def serch_empty(self):
-        for i in self.wagon:
-            print(i)
-            flag = True
-            for j in i.keys():
-                if i[j] != "None":
-                    flag = False
-                    break
-            if flag:
-                self.count_empty += 1
-
-
-
-
-# function for task 2.1
-
-# def merge_dict(a, b):
-#     return a.update(b)
+import train
 
 # first task
 # task 1.1
@@ -91,8 +56,8 @@ print(res_dict)
 # task 2.2
 
 N = int(input("Введите количество купе: "))
-train = TTrain(N)
+train_x = train.TTrain(N)
 
-train.add_value()
-train.serch_empty()
-print(train.count_empty)
+train_x.add_value()
+train_x.serch_empty()
+print(train_x.count_empty)
