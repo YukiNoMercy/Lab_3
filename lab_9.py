@@ -1,20 +1,26 @@
 import random
 
-
 class TTrain:
-    def __init__(self, N):
-        self.wagon = []
-        self.places = 4
-        self.compartment = N
-        self.count_empty = 0
-        self.variable = ['м', 'ж', "None"]
+    def __init__(self, N): #конструктор. Инициализация.
+        # в скобках указывааются парамметры, которые передаются при создании объекта этого класса
+        #self - передаёт себя
+        #Далее поля класса(переменные которые есть у всех объектов данного класса)
+        self.wagon = [] #массив словарей
+        self.places = 4 #Количество мест в купе
+        self.compartment = N #количество купе в вагоне
+        self.count_empty = 0 #Счётчик пустых купе
+        self.variable = ['м', 'ж', "None"] #варианты значений, которые могут быть в словаре
 
-    def add_value(self):
-        for i in range(self.compartment):
-            temp = {}
-            for j in range(1, self.places + 1):
-                temp.update({j : random.choice(self.variable)})
-            self.wagon.append(temp)
+    #Далее методы(внутренние функции которые можно вызвать у всех объектов данного класса
+
+    def add_value(self): #Метод заполнения массива(передаём в него объект(себя) через self)
+        for i in range(self.compartment): #Циклом выполняем действия которые указаны дальше
+            #столько раз сколько купе в вагоне
+            temp = {} #при каждой итерации цикла сознаём пустой словарь, который олицетворяет купе
+            for j in range(1, self.places + 1): #выполняется столько раз, сколько мест в купе
+                temp.update({j : random.choice(self.variable)}) #добавляем в словарь пару
+                # ключ(номер места в купе) - значение(рандомное из тех, которые могут быть(указаны в поле variable)
+            self.wagon.append(temp) #Добавляем в массив полученный словарь
 
     def serch_empty(self):
         for i in self.wagon:
@@ -26,8 +32,6 @@ class TTrain:
                     break
             if flag:
                 self.count_empty += 1
-
-
 
 
 # function for task 2.1
