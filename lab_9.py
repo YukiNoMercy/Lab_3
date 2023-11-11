@@ -1,7 +1,7 @@
 import random
 
 class TTrain:
-    def __init__(self, N): #конструктор. Инициализация.
+    def __init__(self, N): #конструктор. Инициализация класса. Обязательно надо.
         # в скобках указывааются парамметры, которые передаются при создании объекта этого класса
         #self - передаёт себя
         #Далее поля класса(переменные которые есть у всех объектов данного класса)
@@ -9,6 +9,7 @@ class TTrain:
         self.places = 4 #Количество мест в купе
         self.compartment = N #количество купе в вагоне
         self.count_empty = 0 #Счётчик пустых купе
+        self.indexs = []
         self.variable = ['м', 'ж', "None"] #варианты значений, которые могут быть в словаре
 
     #Далее методы(внутренние функции которые можно вызвать у всех объектов данного класса
@@ -23,7 +24,9 @@ class TTrain:
             self.wagon.append(temp) #Добавляем в массив полученный словарь
 
     def serch_empty(self): #Метод для поиска пустых купе
+        j = 0
         for i in self.wagon: # Цикл, который перебирает элементы массива(То есть мы в и храним словарь(купе))
+            j += 1
             print(i) #просто выводим текущий словарь(купе)
             flag = True #Переменная в которой мы храним булево(логическое значение)
             #ее мы будем использовать для того чтобы понять, пустое купе или нет
@@ -37,12 +40,9 @@ class TTrain:
             if flag: #Если у нас в переменной flag лежит True, То мы увеличиваем значение переменной,
                 # которая отвечает за подсчёт пустых вагонов на 1
                 self.count_empty += 1
+                self.indexs.append(j)
 
 
-# function for task 2.1
-
-# def merge_dict(a, b):
-#     return a.update(b)
 
 # first task
 # task 1.1
@@ -66,12 +66,13 @@ c_set = a_set.difference(b_set)
 print(c_set)
 
 # task 1.5
-a_dict = {i: i * i for i in range(5)}
+a_dict = dict([["1", 1], ["2", 4], ["3", 9], ["4", 16]])
+# a_dict = {i: i * i for i in range(5)}
 print(a_dict)
 
 # metods over dict (task 1.6)
 
-el = a_dict.get(4)
+el = a_dict.get("4")
 print(el)
 
 item = a_dict.popitem()
@@ -100,8 +101,10 @@ print(res_dict)
 # task 2.2
 
 N = int(input("Введите количество купе: "))
-train = TTrain(N)
+train = TTrain(N) # Создаём объект train, класса TTrain(или же типа)
 
+#дальше вызываем методы у объекта и после выводим знаечение поля count_empty
 train.add_value()
 train.serch_empty()
 print(train.count_empty)
+print(train.indexs)
